@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { JSX, useEffect, useState } from "react";
 import { fetchPortfolio, fetchProjets } from "@/api/apicalls";
 import { ArrowDownIcon, MagnifyingGlassIcon } from "@heroicons/react/16/solid";
+import Footer from "@/components/footer/footer";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -53,7 +54,7 @@ const [projets, setProjets] = useState<any[]>([]);
     <div className="flex flex-col w-full min-h-full p-5 justify-center items-center">
       <section className="flex flex-row w-full justify-around items-center mb-5 p-5">
         <div className="flex flex-col  justify-center w-1/2 items-start gap-3">
-          <h1 className="text-4xl font-bold text-start">{content.title}</h1>
+          <h1 className="text-4xl font-bold text-start">{content.Nom}</h1>
           <p className="text-xl font-medium">{content.description}</p>
         </div>
         <img src="./illuprojets.png" className="w-1/2"/>
@@ -95,7 +96,7 @@ const [projets, setProjets] = useState<any[]>([]);
         ))}
       </div>
     </section>
-      
+      <Footer />
     </div>
   );
 }

@@ -29,10 +29,26 @@ interface ImageFormats {
 
 interface Image {
     formats: ImageFormats;
+    url?: string;
+}
+
+interface Lien{
+    url: string;
+    display: string;
 }
 
 const getResponsewithBearerToken = async (url: string) => {
     return await axios.get(url, {
+        headers: {
+            Authorization: `Bearer ${TOKEN}`
+        }
+    });
+}
+
+const postResponsewithBearerToken = async (url: string, data: any) => {
+    return await axios.post(url, {
+        data: data
+    }, {
         headers: {
             Authorization: `Bearer ${TOKEN}`
         }
@@ -95,15 +111,89 @@ export const fetchPortfolio = async () => {
     return portfolio;
 };
 
+interface APropos extends StrapiObject {
+    title: string;
+    introduction: string;
+    premier_paragraphe: Paragraph[];
+    premiere_image: Image;
+    second_paragraphe: Paragraph[];
+    troisieme_paragraphe: Paragraph[];
+    troisieme_image: Image;
+    quatrieme_paragraphe: Paragraph[];
+    quatrieme_image: Image;
+    cinquieme_paragraphe: Paragraph[];
+    cinquieme_image: Image;
+
+}
+
 export const fetchAPropos = async () => {
-    const response = await axios.get(`${API_URL}/a-propos?populate=*`);
-    return response.data;
+    const response = await getResponsewithBearerToken(`${API_URL}/a-propo?populate=*`);
+    const aProposData: APropos = response.data.data;
+
+    const aPropos = {
+        id: aProposData.id,
+        documentId: aProposData.documentId,
+        title: aProposData.title,
+        introduction: aProposData.introduction,
+        premierParagraphe: aProposData.premier_paragraphe.map((p: Paragraph) => p.children.map(c => c.text).join(' ')).join('\n'),
+        premiereImage: aProposData.premiere_image.url ,
+        secondParagraphe: aProposData.second_paragraphe.map((p: Paragraph) => p.children.map(c => c.text).join(' ')).join('\n'),
+        troisiemeParagraphe: aProposData.troisieme_paragraphe.map((p: Paragraph) => p.children.map(c => c.text).join(' ')).join('\n'),
+        troisiemeImage: aProposData.troisieme_image.url ,
+        quatriemeParagraphe: aProposData.quatrieme_paragraphe.map((p: Paragraph) => p.children.map(c => c.text).join(' ')).join('\n'),
+        quatriemeImage: aProposData.quatrieme_image.url ,
+        cinquiemeParagraphe: aProposData.cinquieme_paragraphe.map((p: Paragraph) => p.children.map(c => c.text).join(' ')).join('\n'),
+        cinquiemeImage: aProposData.cinquieme_image.url ,
+        createdAt: aProposData.createdAt,
+        updatedAt: aProposData.updatedAt,
+        publishedAt: aProposData.publishedAt,
+        locale: aProposData.locale
+
+    }
+    return aPropos;
 };
 
+export interface PageContact extends StrapiObject {
+    title: string;
+    description : Paragraph[];
+    liens : Lien[];
+}
+
 export const fetchContact = async () => {
-    const response = await axios.get(`${API_URL}/contact`);
-    return response.data;
+    const response = await getResponsewithBearerToken(`${API_URL}/page-contact?populate=*`);
+    
+    const contactData: PageContact = response.data.data;
+
+    const aPropos = {
+        id: contactData.id,
+        documentId: contactData.documentId,
+        title: contactData.title,
+        description: contactData.description.map((p: Paragraph) => p.children.map(c => c.text).join(' ')).join('\n'),
+        github: contactData.liens.find((lien: Lien) => lien.display === 'github')?.url,
+        linkedin: contactData.liens.find((lien: Lien) => lien.display === 'linkedin')?.url,
+        email: contactData.liens.find((lien: Lien) => lien.display === 'email')?.url,
+        
+        createdAt: contactData.createdAt,
+        updatedAt: contactData.updatedAt,
+        publishedAt: contactData.publishedAt,
+        locale: contactData.locale
+
+    }
+    return aPropos;
 };
+
+export interface Contact {
+    nom: string;
+    prenom: string;
+    message : string;
+    email: string;
+}
+
+export const postContact = async (contact: Contact) => {
+    const response = await postResponsewithBearerToken(`${API_URL}/contacts`, contact);
+    return response;
+}
+
 
 // Projets -------------------------
 
@@ -122,6 +212,10 @@ export interface Projet extends StrapiObject {
     mockup_gauche: Image;
     exemple_code: string;
     technologies: Technology[];
+    periode : number;
+    duree_realisation : number;
+    details_projet: Paragraph[];
+    deuxieme_screen: Image;
 }
 
 export const fetchProjets = async () => {
@@ -133,17 +227,19 @@ export const fetchProjets = async () => {
         documentId: projet.documentId,
         Nom: projet.Nom,
         description: projet.description.map((p: Paragraph) => p.children.map(c => c.text).join(' ')).join('\n'),
-        premier_screen: projet.premier_screen.formats.small?.url || '',
+        details_projet: projet.details_projet.map((p: Paragraph) => p.children.map(c => c.text).join(' ')).join('\n'),
+        periode: projet.periode,
+        duree_realisation: projet.duree_realisation,
+        premier_screen: projet.premier_screen.formats.small?.url ,
         technologies: projet.technologies.map((tech: Technology) => ({
             id: tech.id,
             documentId: tech.documentId,
             Nom: tech.Nom,
-            Icone: tech.Icone.formats.small?.url || ''
         })),
         url_github: projet.url_github,
         url_prod: projet.url_prod,
-        mockup_droite: projet.mockup_droite.formats.small?.url || '',
-        mockup_gauche: projet.mockup_gauche.formats.small?.url || '',
+        mockup_droite: projet.mockup_droite.formats.small?.url ,
+        mockup_gauche: projet.mockup_gauche.formats.small?.url ,
         exemple_code: projet.exemple_code,
         createdAt: projet.createdAt,
         updatedAt: projet.updatedAt,
@@ -163,14 +259,17 @@ export const fetchProjet = async (documentId: string) => {
         documentId: projetData.documentId,
         Nom: projetData.Nom,
         description: projetData.description.map((p: Paragraph) => p.children.map(c => c.text).join(' ')).join('\n'),
-        premier_screen: projetData.premier_screen.formats.medium?.url || '',
-        mockup_droite: projetData.mockup_droite.formats.medium?.url || '',
-        mockup_gauche: projetData.mockup_gauche.formats.medium?.url || '',
+        premier_screen: projetData.premier_screen.formats.medium?.url ,
+        details_projet: projetData.details_projet.map((p: Paragraph) => p.children.map(c => c.text).join(' ')).join('\n'),
+        periode: projetData.periode,
+        duree_realisation: projetData.duree_realisation,
+        deuxieme_screen: projetData.deuxieme_screen.url || projetData.deuxieme_screen.formats.medium?.url,
+        mockup_droite: projetData.mockup_droite.formats.medium?.url ,
+        mockup_gauche: projetData.mockup_gauche.formats.medium?.url ,
         technologies: projetData.technologies.map((tech: Technology) => ({
             id: tech.id,
             documentId: tech.documentId,
             Nom: tech.Nom,
-            Icone: tech.Icone.formats.small?.url || ''
         })),
         url_github: projetData.url_github,
         url_prod: projetData.url_prod,

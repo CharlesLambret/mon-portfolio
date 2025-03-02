@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { useRouter } from "next/router";
 import { JSX, useEffect, useState } from "react";
 import { fetchAccueil } from "@/api/apicalls";
+import Footer from "@/components/footer/footer";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -96,6 +97,7 @@ export default function Home() {
           ))}
         </div>
       </section>
+      <Footer />
     </div>
   );
 }
