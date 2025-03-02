@@ -2,10 +2,13 @@ import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
 import { useRouter } from "next/router";
 import { JSX, useEffect, useState, useRef } from "react";
-import { fetchAccueil } from "@/api/apicalls";
+import { fetchAccueil } from "@/api/accueil";
+import { fetchSEO } from "@/api/seo";
 import Footer from "@/components/footer/footer";
 import styles from '@/styles/home.module.css'; // Importez le fichier CSS
-
+import ChargementComponent from "@/components/chargement/chargement";
+import Head from "next/head";
+import CustomHead from "@/components/head/head";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -21,12 +24,13 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const secondSectionRef = useRef(null);
   const pagesRef = useRef<(HTMLDivElement | null)[]>([]);
-
   useEffect(() => {
     const getContent = async () => {
       try {
         const data = await fetchAccueil();
+        const seoData = await fetchSEO();
         setContent(data);
+        
       } catch (error) {
         console.error("Error fetching accueil:", error);
       } finally {
@@ -100,10 +104,15 @@ export default function Home() {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <ChargementComponent/>;
   }
 
   return (
+    <>
+    <CustomHead
+      pageTitle={content.metaTitle}
+      pageDescription={content.metaDescription}
+    />
     <div className="flex flex-col w-full min-h-full p-5 justify-center items-center">
       <section className={`flex flex-col-reverse md:flex-row w-full justify-around items-center mb-5 md:p-5 ${styles.fadeIn}`}>
         <div className="flex flex-col justify-center w-full md:w-1/2 items-start gap-3 text-center md:text-start">
@@ -144,5 +153,7 @@ export default function Home() {
       </section>
       <Footer />
     </div>
+    </>
+    
   );
 }

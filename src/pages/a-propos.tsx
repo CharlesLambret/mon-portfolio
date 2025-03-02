@@ -2,8 +2,12 @@ import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
 import { useRouter } from "next/router";
 import { JSX, useEffect, useState } from "react";
-import { fetchAPropos } from "@/api/apicalls";
+import { fetchAPropos } from "@/api/apropos";
 import Footer from "@/components/footer/footer";
+import Section from "@/components/section/section";
+import ChargementComponent from "@/components/chargement/chargement";
+import CustomHead from "@/components/head/head";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -13,7 +17,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
 
 export default function APropos() {
   const [content, setContent] = useState<any>(null);
@@ -26,7 +29,7 @@ export default function APropos() {
         setContent(data);
       } catch (error) {
         console.error("Error fetching a-propos:", error);
-      }finally {
+      } finally {
         setLoading(false);
       }
     };
@@ -40,105 +43,32 @@ export default function APropos() {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <ChargementComponent/>;
   }
   return (
-    <div className="flex flex-col w-full min-h-full p-5 justify-center items-center">
-      <section className="flex flex-row w-full justify-around items-center mb-5 p-5">
-        <img src="./illuaproposfull.png" className="w-1/2 p-2"/>
-        <div className="flex flex-col  justify-center w-1/2 items-start gap-3 p-3">
-          <div className="flex flex-row gap-3 items-center">
-            <img src="./photo.png" className="w-1/5 p-5"/>
-            <h1 className="text-4xl font-bold text-start">{content.title}</h1>
+    <>
+      <CustomHead
+        pageTitle={content.metaTitle}
+        pageDescription={content.metaDescription}
+      />
+      <div className="flex flex-col w-full min-h-full p-5 justify-center items-center">
+        <section className="flex flex-col md:flex-row w-full justify-around items-center mb-5 md:p-5">
+          <img src="./illuaproposfull.png" className="w-full md:w-1/2 p-2"/>
+          <div className="flex flex-col justify-center w-full md:w-1/2 items-start gap-3 md:p-3">
+            <div className="flex flex-col w-full md:flex-row gap-3 items-center">
+              <img src="./photo.png" className="hidden md:block md:w-1/5 p-5"/>
+              <h1 className="text-4xl font-bold text-center w-full md:text-start">{content.title}</h1>
+            </div>
+            <p className="text-xl font-medium w-full text-justify">{content.introduction}</p>
           </div>
-            
-            <p className="text-xl font-medium text-justify">{content.introduction}</p>
-        </div>
-      </section>
-      <section className="flex flex-row w-full justify-center items-center p-5">
-        <div className="w-1/3">
-        </div>
-        <div className="w-1/3 flex flex-col justify-center items-center">
-          <div className="w-7 h-7 rounded-full border-3 border-fuchsia-700"></div>
-          <div className=" w-1 h-15 bg-fuchsia-700"></div>
-            <img 
-                src={`${process.env.NEXT_PUBLIC_BASE_UPLOADS_URL}${content.premiereImage}`}
-                className='p-5'
-
-            />
-          <div className=" w-1 h-15 bg-fuchsia-700"></div>
-        </div>
-        <div className="w-1/3 flex justify-center items-center">
-          <p className="text-md text-justify">{content.premierParagraphe}</p>
-        </div>
-      </section>
-      <section className="flex flex-row w-full justify-center items-center">
-        <div className="w-1/3">
-          <p className="text-md text-justify">{content.secondParagraphe}</p>
-
-        </div>
-        <div className="w-1/3 flex justify-center items-center">
-          <div className=" w-1 h-40 bg-fuchsia-700"></div>
-
-        </div>
-        <div className="w-1/3 flex justify-center items-center">
-        </div>
-      </section>
-      <section className="flex flex-row w-full justify-center items-center">
-        <div className="w-1/3">
-        </div>
-        <div className="w-1/3 flex flex-col justify-center items-center">
-        <div className=" w-1 h-15 bg-fuchsia-700"></div>
-
-          <img 
-              src={`${process.env.NEXT_PUBLIC_BASE_UPLOADS_URL}${content.troisiemeImage}`}
-              className='p-5'
-
-          />
-                  <div className=" w-1 h-15 bg-fuchsia-700"></div>
-
-        </div>
-        <div className="w-1/3 flex justify-center items-center">
-          <p className="text-md text-justify">{content.troisiemeParagraphe}</p>
-        </div>
-      </section>
-      <section className="flex flex-row w-full justify-center items-center">
-        <div className="w-1/3">
-          <p className="text-md text-justify">{content.quatriemeParagraphe}</p>
-
-        </div>
-        <div className="w-1/3 flex flex-col justify-center items-center">
-        <div className=" w-1 h-15 bg-fuchsia-700"></div>
-
-          <img 
-                src={`${process.env.NEXT_PUBLIC_BASE_UPLOADS_URL}${content.quatriemeImage}`}
-                className='p-5'
-
-            />
-                    <div className=" w-1 h-15 bg-fuchsia-700"></div>
-
-        </div>
-        <div className="w-1/3 flex justify-center items-center">
-        </div>
-      </section>
-      <section className="flex flex-row w-full justify-center items-center">
-        <div className="w-1/3">
-        </div>
-        <div className="w-1/3 flex flex-col justify-center items-center">
-        <div className=" w-1 h-15 bg-fuchsia-700"></div>
-
-          <img 
-              src={`${process.env.NEXT_PUBLIC_BASE_UPLOADS_URL}${content.cinquiemeImage}`}
-              className='p-5'
-          />
-        <div className=" w-1 h-15 bg-fuchsia-700"></div>
-
-        </div>
-        <div className="w-1/3 flex justify-center items-center">
-          <p className="text-md text-justify">{content.troisiemeParagraphe}</p>
-        </div>
-      </section>
-      <Footer />
-    </div>
+        </section>
+        <Section imageSrc={`${process.env.NEXT_PUBLIC_BASE_UPLOADS_URL}${content.premiereImage}`} text={content.premierParagraphe} date={content.periodePremierParagraphe} isFirst />
+        <Section imageSrc={`${process.env.NEXT_PUBLIC_BASE_UPLOADS_URL}${content.deuxiemeImage}`} text={content.secondParagraphe} date={content.periodeSecondParagraphe} reverse isSecond />
+        <Section imageSrc={`${process.env.NEXT_PUBLIC_BASE_UPLOADS_URL}${content.troisiemeImage}`} text={content.troisiemeParagraphe} date={content.periodeTroisiemeParagraphe} />
+        <Section imageSrc={`${process.env.NEXT_PUBLIC_BASE_UPLOADS_URL}${content.quatriemeImage}`} text={content.quatriemeParagraphe} date={content.periodeQuatriemeParagraphe} reverse />
+        <Section imageSrc={`${process.env.NEXT_PUBLIC_BASE_UPLOADS_URL}${content.cinquiemeImage}`} text={content.cinquiemeParagraphe} date={content.periodeCinquiemeParagraphe} />
+        <Footer />
+      </div>
+    </>
   );
 }

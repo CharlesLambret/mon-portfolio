@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { fetchProjet } from "@/api/apicalls";
+import { fetchProjet } from "@/api/projets";
 import { MacbookMockUp } from "@/components/mockups/macbook";
 import { useState } from "react";
 import { GlobeAltIcon } from "@heroicons/react/24/outline";
@@ -8,6 +8,9 @@ import GithubIcon from "@/components/svg/github";
 import VecteurSolo from "@/components/svg/vecteursolo";
 import VecteurDuo from "@/components/svg/vecteurduo";
 import Footer from "@/components/footer/footer";
+import ChargementComponent from "@/components/chargement/chargement";
+import NoProjectFoundComponent from "@/components/noprojectfound/noprojectfound";
+import CustomHead from "@/components/head/head";
 
 interface Technologie {
     id: string;
@@ -18,6 +21,14 @@ export default function ProjetPage() {
     const { id } = router.query;
     const [projet, setProjet] = useState<any>(null);
     const [loading, setLoading] = useState(true);
+
+    const formatCode = (code: string) => {
+        // Remove backticks and trim whitespace
+        const cleanedCode = code.replace(/```/g, '').trim();
+        // Add line breaks for long lines
+        
+        return cleanedCode;
+    };
 
     useEffect(() => {
         if (id) {
@@ -36,79 +47,92 @@ export default function ProjetPage() {
     }, [id]);
 
     if (loading) {
-        return <div>Loading...</div>;
+    return <ChargementComponent/>;
     }
 
     if (projet) {
         return (
-            <div className="flex flex-col w-full min-h-full p-5 justify-center items-center">
-                <h1 className="text-4xl font-bold">{projet.Nom}</h1>
-                <div className="flex flex-row justify-evenly items-center py-5 w-1/2 mx-auto">
-                    <a href={projet.url_prod} target="_blank" rel="noreferrer" className="text-white py-2 px-4 gap-2 flex flex-row justify-center items-center rounded-full bg-linear-to-b from-orange-300 to-orange-400  "> <GlobeAltIcon className="w-10"/> Voir le projet en ligne</a>
-                    <a href={projet.url_github} target="_blank" rel="noreferrer" className="text-white py-2 px-4 gap-2 flex flex-row justify-center items-center rounded-full bg-linear-to-b from-purple-500 to-purple-600"><GithubIcon className="w-10"/>Accéder au Github</a>
-                </div>
-                <div className="flex flex-row justify-evenly items-center py-5 mx-auto">
-                    <VecteurSolo className="w-20"/>
-                    <MacbookMockUp
-                        src={`${process.env.NEXT_PUBLIC_BASE_UPLOADS_URL}${projet.premier_screen}`}
-                        
+            <>
+              <CustomHead
+                pageTitle={projet.metaTitle}
+                pageDescription={projet.metaDescription}
+              />
+                
+                <div className="flex flex-col w-full min-h-full p-5 justify-center items-center">
+                    <h1 className="text-4xl font-bold">{projet.Nom}</h1>
+                    <img className="md:hidden w-full my-5" src={`${process.env.NEXT_PUBLIC_BASE_UPLOADS_URL}${projet.premier_screen}`} alt="mockup"/>
+                    <div className="flex flex-col md:flex-row justify-evenly items-center py-5 w-full md:w-1/2 mx-auto">
+                        <a href={projet.url_prod} target="_blank" rel="noreferrer" className="text-white my-2 py-2 px-4 gap-2 flex flex-row justify-center items-center rounded-full bg-linear-to-b from-orange-300 to-orange-400  "> <GlobeAltIcon className="w-10"/> Voir le projet en ligne</a>
+                        <a href={projet.url_github} target="_blank" rel="noreferrer" className="text-white my-2 py-2 px-4 gap-2 flex flex-row justify-center items-center rounded-full bg-linear-to-b from-purple-500 to-purple-600"><GithubIcon className="w-10"/>Accéder au Github</a>
+                    </div>
+                    <div className="flex hidden md:block flex-row justify-evenly items-center py-5 mx-auto">
+                        <VecteurSolo className="w-20"/>
+                        <MacbookMockUp
+                            src={`${process.env.NEXT_PUBLIC_BASE_UPLOADS_URL}${projet.premier_screen}`}
+                            
+                        />
+                        <VecteurDuo className="w-30"/>
+                    </div>
+                    <div className="flex flex-col md:flex-row w-full justify-center md:justify-around items-center my-5">
+                    <p className="text-lg font-medium py-5"> Technologies utilisées :   
+                    {projet.technologies.map((tech: Technologie, index: number) => (
+                        <> {tech.Nom}{index < projet.technologies.length - 1 ? ',' : ''}</>
+                    ))}
+                        </p>
+                        <p className="text-lg font-medium py-5">
+                            Période de réalisation : {projet.periode} 
+                        </p>
+                        <p className="text-lg font-medium py-5">
+                            Durée de réalisation : {projet.duree_realisation} jours
+                        </p>
+                    </div>
+                    <div className="flex flex-col-reverse md:flex-row justify-evenly items-center py-5 mx-auto w-full md:w-2/3 my-5">
+                        <div className="flex flex-col gap-3 justify-center w-full md:w-2/3 items-center md:items-start py-5  md:py-0">
+                            <h2 className="text-2xl font-bold text-center md:text-start">Description du projet</h2>
+                            <p className="text-lg font-medium w-full text-justify">{projet.description}</p>
+                        </div>
+                        <div className="w-full md:w-1/3 mx-2 border-purple-500 border-2 p-3 rounded">
+                            <img 
+                                src={`${process.env.NEXT_PUBLIC_BASE_UPLOADS_URL}${projet.mockup_droite}`}
+                                alt="mockup droite"
+                                className="w-full"
+                            />
+                        </div>
+                    </div>
+                    <div className="w-full md:w-4/5 my-5 py-5">
+                        <div className="h-1 bg-gradient-to-r from-orange-500 via-purple-500 to-violet-500"></div>
+                    </div>
+                    <img 
+                        src={`${process.env.NEXT_PUBLIC_BASE_UPLOADS_URL}${projet.deuxieme_screen}`}
+                        className="w-full md:w-4/5"
                     />
-                    <VecteurDuo className="w-30"/>
-                </div>
-                <div className="flex flex-row w-full justify-around items-center my-5">
-                  <p className="text-lg font-medium"> Technologies utilisées :   
-                     {projet.technologies.map((technologie: Technologie) => (
-                                           <span key={technologie.id}> {technologie.Nom} </span>
-                                        ))  }
-                    </p>
-                    <p className="text-lg font-medium">
-                        Période de réalisation : {projet.periode} 
-                    </p>
-                    <p className="text-lg font-medium">
-                        Durée de réalisation : {projet.duree_realisation} jours
-                    </p>
-                </div>
-                <div className="flex flex-row justify-evenly items-center py-5 mx-auto w-2/3 my-5">
-                    <div className="flex flex-col gap-3 justify-center w-2/3 items-start">
-                        <h2 className="text-2xl font-bold">Description du projet</h2>
-                        <p className="text-lg font-medium">{projet.description}</p>
+                    <div className="w-full md:w-4/5 my-5 py-5">
+                        <div className="h-1 bg-gradient-to-r from-orange-500 via-purple-500 to-violet-500"></div>
                     </div>
-                    <div className="w-1/3 mx-2 border-purple-500 border-2 p-3 rounded">
-                        <img 
-                            src={`${process.env.NEXT_PUBLIC_BASE_UPLOADS_URL}${projet.mockup_droite}`}
-                            alt="mockup droite"
-                            className="w-full"
-                        />
+                    <div className="flex flex-col md:flex-row justify-evenly items-center py-5 mx-auto w-full md:w-2/3 my-5">
+                        <div className="w-full md:w-1/3 mx-2 border-purple-500 border-2 p-3 rounded">
+                            <img 
+                                src={`${process.env.NEXT_PUBLIC_BASE_UPLOADS_URL}${projet.mockup_gauche}`}
+                                alt="mockup gauche"
+                                className="w-full"
+                            />
+                        </div>
+                        <div className="flex flex-col gap-3 py-5 justify-center w-full md:w-1/2 items-start">
+                            <h2 className="text-2xl font-bold  text-center w-full md:text-start">Détails du projet</h2>
+                            <p className="text-lg font-medium text-justify w-full">{projet.details_projet}</p>
+                        </div>
                     </div>
-                </div>
-                <div className="w-4/5 my-5 py-5">
-                    <div className="h-1 bg-gradient-to-r from-orange-500 via-purple-500 to-violet-500"></div>
-                </div>
-                <img 
-                    src={`${process.env.NEXT_PUBLIC_BASE_UPLOADS_URL}${projet.deuxieme_screen}`}
-                    className="w-4/5"
-                />
-                <div className="w-4/5 my-5 py-5">
-                    <div className="h-1 bg-gradient-to-r from-orange-500 via-purple-500 to-violet-500"></div>
-                </div>
-                <div className="flex flex-row justify-evenly items-center py-5 mx-auto w-2/3 my-5">
-                    <div className="w-1/3 mx-2 border-purple-500 border-2 p-3 rounded">
-                        <img 
-                            src={`${process.env.NEXT_PUBLIC_BASE_UPLOADS_URL}${projet.mockup_gauche}`}
-                            alt="mockup gauche"
-                            className="w-full"
-                        />
+                    <div className="w-full md:w-4/5 my-5 py-5">
+                        <h2 className="text-2xl font-bold text-center md:text-start">Exemple de code</h2>
+                        <pre className="bg-gray-800 text-white p-4 rounded" style={{ whiteSpace: 'pre-wrap' }}>
+                            <code className="language-javascript">{formatCode(projet.exemple_code)}</code>
+                        </pre>
                     </div>
-                    <div className="flex flex-col gap-3 justify-center w-1/2 items-start">
-                        <h2 className="text-2xl font-bold">Détails du projet</h2>
-                        <p className="text-lg font-medium">{projet.details_projet}</p>
-                    </div>
+                    <Footer />
                 </div>
-                <p>{projet.exemple_code}</p>
-                <Footer />
-            </div>
+            </>
         );
     }
 
-    return <div>Projet not found</div>;
+    return <NoProjectFoundComponent />;
 }
