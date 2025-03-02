@@ -3,8 +3,10 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Logo from './logo/logo';
 import { HomeIcon } from '@heroicons/react/24/outline';
-import { FolderIcon, InformationCircleIcon, EnvelopeIcon, DocumentTextIcon } from '@heroicons/react/24/outline';
-
+import { FolderIcon, InformationCircleIcon, EnvelopeIcon, DocumentTextIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { useState } from 'react';
+import { Bars3Icon } from '@heroicons/react/24/outline';
+import LogoBleu from './logo/logoblue';
 interface Link {
   name: string;
   url: string;
@@ -13,7 +15,10 @@ interface Link {
 
 const Sidebar: React.FC = () => {
   const router = useRouter();
-
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
   const links: Link[] = [
     {
       name: 'Accueil',
@@ -42,22 +47,53 @@ const Sidebar: React.FC = () => {
         },
   ];
 
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
 
   return (
-    <div className="w-1/6 border-r flex-col justify-center shadow-lg shadow-blue-300/30 items-center sticky top-0 h-screen p-7 bg-linear-to-bl from-blue-900 to-indigo-950">
-      <Logo className='w-1/3 mx-auto cursor-pointer mb-2'/>
-      <ul className="space-y-2 mt-5">
-        {links.map((link) => (
-          <li key={link.name} className="py-2">
-              <Link href={link.url} className=" w-1/2 gap-2 text-gray-300 hover:text-white hover:text-lg cursor-pointer hover:text-bold w-full flex flex-row text-start gap-1 justify-start items-center ">
-                <link.icon className='w-8' />
-                {link.name}
-              </Link>
-          </li>
-        ))}
-      </ul>
+    <div className="w-full md:w-1/6">
+      <div className="w-full border-r hidden md:flex  flex-col justify-start shadow-lg shadow-blue-300/30 items-start sticky top-0 h-screen p-7 bg-linear-to-bl from-blue-900 to-indigo-950">
+        <Logo className='w-1/3 mx-auto cursor-pointer mb-2'/>
+        <ul className="space-y-2 mt-5">
+          {links.map((link) => (
+            <li key={link.name} className="py-2">
+                <Link href={link.url} className=" w-1/2 gap-2 text-gray-300 hover:text-white hover:text-lg cursor-pointer hover:text-bold w-full flex flex-row text-start gap-1 justify-start items-center  ">
+                  <link.icon className='w-8' />
+                  {link.name}
+                </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+      {/* // Responsive menu */}
+      
+      <div className="md:hidden flex h-20 flex-row shadow-lg shadow-blue-300/30 fixed w-full top-0  justify-between items-center p-2 bg-linear-to-bl from-blue-900 to-indigo-950 ">
+        <img src="./logo.png" className='w-1/5 p-3' />
+        <Bars3Icon className="w-8 cursor-pointer text-white" onClick={toggleMenu} />
+      </div>
+      {isOpen && (
+        <div className="md:hidden flex flex-col justify-start items-start shadow-lg  p-10 shadow-blue-300/30 sticky top-0 bg-linear-to-bl from-blue-900 to-indigo-950">
+          <div className='justify-between flex flex-row w-full'>
+            <img src="./logo.png" className='w-1/6' />
+            <XMarkIcon className="w-8 cursor-pointer text-white" onClick={closeMenu} />
+          </div>
+          <ul className="space-y-2 mt-5">
+            {links.map((link) => (
+              <li key={link.name} className="py-2">
+                <Link href={link.url} className=" w-1/2 gap-2 text-gray-300 hover:text-white hover:text-lg cursor-pointer hover:text-bold w-full flex flex-row text-start gap-1 justify-start items-center ">
+                  <link.icon className='w-8' />
+                  {link.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
+    
   );
 };
 
 export default Sidebar;
+
