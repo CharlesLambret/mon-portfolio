@@ -81,8 +81,13 @@ export default function Home() {
       <div className="flex flex-col w-full min-h-full p-5 justify-center items-center">
         <section className="flex flex-col-reverse md:flex-row w-full justify-around items-center mb-5 p-5">
           <div className="flex flex-col justify-center w-full md:w-1/2 items-start gap-3">
-            <h1 className="text-4xl font-bold text-start">{content.Nom}</h1>
-            <p className="text-xl font-medium">{content.description}</p>
+            <h1 className="text-4xl font-bold text-start">{content.title}</h1>
+            {content.description ? (
+              content.description.split('\n').map((paragraph: string, index: number) => (
+                <p key={index} className="text-xl font-medium">{paragraph}</p>
+              ))
+            ) : null}
+            
           </div>
           <img src="./illuportfolio.png" className="w-full md:w-1/2" />
         </section>

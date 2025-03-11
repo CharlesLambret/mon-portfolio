@@ -15,7 +15,7 @@ export const fetchPortfolio = async () => {
         id: portfolioData.id,
         documentId: portfolioData.documentId,
         title: portfolioData.Titre,
-        description: portfolioData.Description.map((p: Paragraph) => p.children.map(c => c.text).join(' ')).join('\n'),
+        description: portfolioData.Description.map((p: Paragraph) => p.children.map(c => c.text).join('\n')).join('\n'),
         metaTitle: portfolioData.seo.metaTitle,
         metaDescription: portfolioData.seo.metaDescription,
         createdAt: portfolioData.createdAt,
