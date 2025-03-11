@@ -116,8 +116,8 @@ export default function Home() {
     <div className="flex flex-col w-full min-h-full p-5 justify-center items-center">
       <section className={`flex flex-col-reverse md:flex-row w-full justify-around items-center mb-5 md:p-5 ${styles.fadeIn}`}>
         <div className="flex flex-col justify-center w-full md:w-1/2 items-start gap-3 text-center md:text-start">
-          <h1 className="text-4xl font-bold ">{content.title}</h1>
-          <h3 className="text-2xl font-semibold text-start">{content.titreParagraphe}</h3>
+          <h1 className="text-4xl font-bold my-5 md:my-0 ">{content.title}</h1>
+          <h3 className="text-3xl md:text-2xl mb-5 md:mb-0 font-semibold text-center md:text-start">{content.titreParagraphe}</h3>
           <p className="text-xl font-medium text-justify">{content.paragraphe}</p>
         </div>
         <img src="./illuaccueil.png" className={`w-full md:w-1/2 ${styles.floatAnimation}`} alt="Illustration d'accueil" />
@@ -125,16 +125,18 @@ export default function Home() {
       <div className="my-5 py-1 h-30 hidden md:block"></div>
       <section ref={secondSectionRef} className="flex flex-col w-full justify-center items-center gap-5 md:my-5 py-5">
         <img src="./photo.png" alt="Photo de Charles Lambret" className="rounded-full w-1/2 mx-auto md:w-1/6 mt-5" />
-        <h2 className="text-3xl font-bold">{content.titreDeux}</h2>
+        <h2 className="text-3xl text-center md:text-start font-bold">{content.titreDeux}</h2>
         <p className="text-lg text-justify w-full md:w-3/4 mx-auto">
           {content.paragrapheDeux}
         </p>
       </section>
       <section className="flex flex-col w-full justify-center items-center gap-5 my-5 py-5">
         <h2 className="text-3xl font-bold text-center md:text-start">{content.titreTrois}</h2>
-        <p className="text-lg text-justify w-full text-justify md:w-3/4 mx-auto my-4">
-          {content.paragrapheTrois}
-        </p>
+        {content.paragrapheTrois.split('\n').map((paragraph: string, index: number) => (
+          <p key={index} className="text-lg text-justify w-full text-justify md:w-3/4 mx-auto mt-3 mb-1">
+            {paragraph}
+          </p>
+        ))}
         <div className="flex flex-col  md:flex-row justify-center px-5 w-full gap-5">
           {Pages.map((page, index) => (
             <div

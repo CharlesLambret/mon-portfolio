@@ -36,7 +36,7 @@ const Section: React.FC<SectionProps> = ({ imageSrc, date, text, reverse = false
 
             {!isSecond && (
             <img 
-            src={imageSrc}
+            src={`${process.env.NEXT_PUBLIC_BASE_UPLOADS_URL}${imageSrc}`}
             className='h-2/5  p-5'
             />
 

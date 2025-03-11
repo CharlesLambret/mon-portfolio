@@ -14,7 +14,7 @@ interface AccueilData extends StrapiObject {
 }
 
 export const fetchAccueil = async () => {
-    const response = await getResponsewithBearerToken(`${API_URL}/accueil`);
+    const response = await getResponsewithBearerToken(`${API_URL}/accueil?populate=*`);
     const accueilData: AccueilData = response.data.data;
 
     const accueil = {
@@ -26,7 +26,7 @@ export const fetchAccueil = async () => {
         titreDeux: accueilData.TitreDeux,
         paragrapheDeux: accueilData.ParagrapheDeux.map((p: Paragraph) => p.children.map(c => c.text).join(' ')).join('\n'),
         titreTrois: accueilData.Titre3,
-        paragrapheTrois: accueilData.ParagrapheTrois.map((p: Paragraph) => p.children.map(c => c.text).join(' ')).join('\n'),
+        paragrapheTrois: accueilData.ParagrapheTrois.map((p: Paragraph) => p.children.map(c => c.text).join('\n')).join('\n'),
         createdAt: accueilData.createdAt,
         updatedAt: accueilData.updatedAt,
         publishedAt: accueilData.publishedAt,

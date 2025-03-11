@@ -10,6 +10,8 @@ export interface Paragraph {
     children: { type: string; text: string }[];
 }
 
+
+
 export interface StrapiObject {
     id: number;
     documentId: string;

@@ -9,7 +9,7 @@ export interface PortfolioData extends StrapiObject {
 }
 
 export const fetchPortfolio = async () => {
-    const response = await getResponsewithBearerToken(`${API_URL}/portfolio`);
+    const response = await getResponsewithBearerToken(`${API_URL}/portfolio?populate=*`);
     const portfolioData: PortfolioData = response.data.data;
     const portfolio = {
         id: portfolioData.id,
