@@ -1,4 +1,3 @@
-import { Paragraph } from '@/api/strapiformats';
 import React from 'react';
 
 interface SectionProps {

@@ -17,7 +17,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 }
 
-import { useRouter } from 'next/router';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

@@ -1,5 +1,5 @@
 import { SEOData } from "./seo";
-import { API_URL, StrapiObject, Paragraph, getResponsewithBearerToken, Image } from "./strapiformats";
+import { API_URL, StrapiObject, getResponsewithBearerToken } from "./strapiformats";
 
 
 interface CVData extends StrapiObject {

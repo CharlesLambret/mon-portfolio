@@ -34,7 +34,6 @@ export default function CV() {
     getContent();
   }, []);
 
-  const router = useRouter();
 
   if (loading) {
     return <ChargementComponent />;
