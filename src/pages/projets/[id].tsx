@@ -86,12 +86,12 @@ export default function ProjetPage() {
                             Durée de réalisation : {projet.duree_realisation} jours
                         </p>
                     </div>
-                    <div className="flex flex-col-reverse md:flex-row justify-evenly items-center py-5 mx-auto w-full md:w-2/3 my-5">
-                        <div className="flex flex-col gap-3 justify-center w-full md:w-2/3 items-center md:items-start py-5  md:py-0">
+                    <div className="flex flex-col-reverse md:flex-row justify-evenly items-center py-5 mx-auto w-full md:w-4/5 gap-5 my-5">
+                        <div className="flex flex-col gap-3 justify-center w-full md:w-1/2 items-center md:items-start py-5  md:py-0">
                             <h2 className="text-2xl font-bold text-center md:text-start">Description du projet</h2>
                             <p className="text-lg font-medium w-full text-justify">{projet.description}</p>
                         </div>
-                        <div className="w-full md:w-1/3 mx-2 border-purple-500 border-2 p-3 rounded">
+                        <div className="w-full md:w-1/2 mx-2 border-purple-500 border-2 p-3 rounded">
                             <img 
                                 src={`${process.env.NEXT_PUBLIC_BASE_UPLOADS_URL}${projet.mockup_droite}`}
                                 alt="mockup droite"
@@ -109,8 +109,8 @@ export default function ProjetPage() {
                     <div className="w-full md:w-4/5 my-5 py-5">
                         <div className="h-1 bg-gradient-to-r from-orange-500 via-purple-500 to-violet-500"></div>
                     </div>
-                    <div className="flex flex-col md:flex-row justify-evenly items-center py-5 mx-auto w-full md:w-2/3 my-5">
-                        <div className="w-full md:w-1/3 mx-2 border-purple-500 border-2 p-3 rounded">
+                    <div className="flex flex-col md:flex-row justify-between items-center py-5 mx-auto w-full md:w-4/5 gap-5 my-5">
+                        <div className="w-full md:w-1/2 mx-2 border-purple-500 border-2 p-3 rounded">
                             <img 
                                 src={`${process.env.NEXT_PUBLIC_BASE_UPLOADS_URL}${projet.mockup_gauche}`}
                                 alt="mockup gauche"

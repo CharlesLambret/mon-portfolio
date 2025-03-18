@@ -9,7 +9,7 @@ interface Section extends StrapiObject {
 
 interface APropos extends StrapiObject {
     title: string;
-    introduction: string;
+    introduction: Paragraph[];
     sections: Section[];
     seo: SEOData;
 

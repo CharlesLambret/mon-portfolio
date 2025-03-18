@@ -53,6 +53,7 @@ export default function APropos() {
             <img src="./photo.png" className="hidden md:block md:w-1/5 p-5"/>
             <h1 className="text-4xl font-bold text-center w-full md:text-start">{content.title}</h1>
           </div>
+          
           <p className="text-xl font-medium w-full text-justify">{content.introduction}</p>
         </div>
       </section>

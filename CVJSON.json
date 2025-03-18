@@ -1,0 +1,209 @@
+{
+    "data": {
+        "id": 5,
+        "documentId": "smo73ysz690jxra732xy7499",
+        "createdAt": "2025-03-11T17:13:59.925Z",
+        "updatedAt": "2025-03-16T00:46:39.237Z",
+        "publishedAt": "2025-03-16T00:46:39.450Z",
+        "downloadurl": "https://drive.google.com/uc?export=download&id=15X_SpK8gTL7PIpNmDa2c_8qzekzOIwtu",
+        "PremierParagraphe": "En quête d'une nouvelle opportunité pour la rentrée 2025, je bénéficie de 3 années d'expérience en gestion de projets digitaux et techniques. Passionné par l'automatisation et l'optimisation des processus, je suis motivé par les défis alliant innovation et performance.",
+        "title": "Mon CV – Parcours en Développement et Gestion de Projet",
+        "subtitle": "Un profil hybride entre technique et gestion",
+        "introduction": "Fort d’une double expertise en développement full-stack et en gestion de projet technique, mon parcours me permet d’intervenir aussi bien sur la conception et l’optimisation d’applications que sur le pilotage de projets digitaux. Grâce à mon expérience en TypeScript, PHP et Python, ainsi qu’en gestion d’équipes techniques, je suis capable de livrer des solutions scalables, performantes et optimisées.\n\n📌 Actuellement Chef de Projet Technique chez Dékuple, je veille à la livraison des sites pour nos clients ,à la mise en place de process optimisés et l’automatisation des tâches de chefferie de projet pour assurer des livraisons efficaces et de haute qualité.\n\n🚀 Découvrez mon CV détaillé ci-dessous.",
+        "experiences": [
+            {
+                "id": 14,
+                "Entreprise": "DEKUPLE",
+                "Periode": "Septembre 2024 - Septembre 2025",
+                "description": "Gestion de projets web au sein de la DSI, au service des différents départements de l'entreprise. Collaboration étroite avec l'agence marketing interne, les développeurs et les autres chefs de projets digitaux pour assurer le recueil des besoins clients, le pilotage des équipes techniques et la qualité des livrables. Mise en place de solutions d'automatisation pour optimiser plusieurs processus au sein de la DSI.",
+                "Poste": "Apprenti | Chef de Projet Technique",
+                "motsclefs": [
+                    {
+                        "id": 109,
+                        "mot": "Gestion de Projets Techniques"
+                    },
+                    {
+                        "id": 110,
+                        "mot": "Veille Technique"
+                    },
+                    {
+                        "id": 111,
+                        "mot": "Automatisation"
+                    },
+                    {
+                        "id": 112,
+                        "mot": "QA / Recettage"
+                    },
+                    {
+                        "id": 113,
+                        "mot": "Google App Script"
+                    },
+                    {
+                        "id": 114,
+                        "mot": "Python"
+                    },
+                    {
+                        "id": 115,
+                        "mot": "MySQL"
+                    }
+                ]
+            },
+            {
+                "id": 15,
+                "Entreprise": "ERIUM",
+                "Periode": "Juin 2022 - Septembre 2023 -",
+                "description": "Production & maintien des supports du produit Cyber Investigation,  compte-rendu de données clients, satisfaction client. Automatisation des processus d’administration de la plateforme et transformation des méthodes de production.  Travail en collaboration avec le Chef de Projet Digital, le Directeur de service et l’équipe technique.",
+                "Poste": "Chef de Projet Digital",
+                "motsclefs": [
+                    {
+                        "id": 116,
+                        "mot": "Wordpress"
+                    },
+                    {
+                        "id": 117,
+                        "mot": "Gestion de Projet Digital"
+                    },
+                    {
+                        "id": 118,
+                        "mot": "PHP"
+                    },
+                    {
+                        "id": 119,
+                        "mot": "React"
+                    },
+                    {
+                        "id": 120,
+                        "mot": "Node"
+                    },
+                    {
+                        "id": 121,
+                        "mot": "Data Analyse / Visualisation"
+                    },
+                    {
+                        "id": 122,
+                        "mot": "QA / RECETTAGE"
+                    }
+                ]
+            },
+            {
+                "id": 13,
+                "Entreprise": "FREELANCE",
+                "Periode": "Juillet 2020 - Aujourd'hui",
+                "description": "Travail seul ou en collaboration avec un autre chef de projet digital afin de produire différents livrables : parcours utilisateurs et maquettes de sites, sites webs, applications mobiles...",
+                "Poste": "Chef de Projet Digital / Développeur web",
+                "motsclefs": []
+            }
+        ],
+        "associatif": [
+            {
+                "id": 16,
+                "Entreprise": "Repairs94 / Repairs 75 - Mairie de Paris",
+                "Periode": "2020 - 2021",
+                "description": "Travail seul ou en collaboration avec une équipe de freelances afin de livrer différents produits (Wordpress, maquettes , stratégie de communication...)",
+                "Poste": "Chef de Projet Digital",
+                "motsclefs": [
+                    {
+                        "id": 142,
+                        "mot": "Wordpress"
+                    },
+                    {
+                        "id": 143,
+                        "mot": "UX Design"
+                    },
+                    {
+                        "id": 144,
+                        "mot": "Marketing / SEO"
+                    }
+                ]
+            }
+        ],
+        "seo": {
+            "id": 22,
+            "metaTitle": "CV – Chef de Projet Technique & Développeur Full-Stack | TypeScript, PHP, Python",
+            "metaDescription": "Découvrez mon CV détaillant mon parcours en développement web et gestion de projet IT. Maîtrise de TypeScript, PHP, Python et gestion de projets technique."
+        },
+        "sotfskills": [
+            {
+                "id": 123,
+                "mot": "Collaboration"
+            },
+            {
+                "id": 124,
+                "mot": "Communication"
+            },
+            {
+                "id": 125,
+                "mot": "Autonomie"
+            },
+            {
+                "id": 126,
+                "mot": "Adaptation"
+            },
+            {
+                "id": 127,
+                "mot": "Résolution de problèmes"
+            },
+            {
+                "id": 128,
+                "mot": "Force de proposition"
+            },
+            {
+                "id": 129,
+                "mot": "Ouverture d'esprit"
+            }
+        ],
+        "hardskills": [
+            {
+                "id": 130,
+                "mot": "React / Next"
+            },
+            {
+                "id": 131,
+                "mot": "Node"
+            },
+            {
+                "id": 132,
+                "mot": "Python"
+            },
+            {
+                "id": 133,
+                "mot": "Java"
+            },
+            {
+                "id": 134,
+                "mot": "Flutter"
+            },
+            {
+                "id": 135,
+                "mot": "C++"
+            },
+            {
+                "id": 136,
+                "mot": "Ecosystème Git"
+            },
+            {
+                "id": 137,
+                "mot": "Docker"
+            },
+            {
+                "id": 138,
+                "mot": "Toad"
+            },
+            {
+                "id": 139,
+                "mot": "Wordpress"
+            }
+        ],
+        "langues": [
+            {
+                "id": 140,
+                "mot": "Français natif"
+            },
+            {
+                "id": 141,
+                "mot": "Anglais C1 (IELTS score de 7.5/9)"
+            }
+        ]
+    },
+    "meta": {}
+}

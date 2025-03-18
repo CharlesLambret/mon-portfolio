@@ -9,7 +9,7 @@ import { EnvelopeIcon, CheckIcon, XCircleIcon } from "@heroicons/react/24/outlin
 import Footer from "@/components/footer/footer";
 import ChargementComponent from "@/components/chargement/chargement";
 import CustomHead from "@/components/head/head";
-
+import { useTheme } from "@/context/theme";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -26,6 +26,7 @@ export default function Contact() {
   const [error, setError] = useState<string | null>(null);
   const [formLocked, setFormLocked] = useState(false);
   const [alreadySent, setAlreadySent] = useState(false);
+  const { theme } = useTheme();
   useEffect(() => {
     const getContent = async () => {
       try {
@@ -110,18 +111,18 @@ export default function Contact() {
               <div className="flex flex-col md:flex-row w-full justify-between items-center gap-3">
                 <div className="flex flex-col w-full md:w-1/2 gap-2">
                   <label htmlFor="nom">Nom</label>
-                  <input type="text" placeholder="Votre nom..." id="nom" name="nom" className="bg-none w-full border-1 p-2 border-white text-white rounded-full" required />
+                  <input type="text" placeholder="Votre nom..." id="nom" name="nom" className={`"bg-none w-full border-1 p-2 border-${theme.main_color} text-${theme.main_color} rounded-full`}required />
                 </div>
                 <div className="flex flex-col w-full md:w-1/2 gap-2">
                   <label htmlFor="prenom">Prénom</label>
-                  <input type="text" placeholder="Votre prénom..." id="prenom" name="prenom" className="bg-none w-full border-1 p-2 border-white text-white rounded-full" required />
+                  <input type="text" placeholder="Votre prénom..." id="prenom" name="prenom" className={`"bg-none w-full border-1 p-2 border-${theme.main_color} text-${theme.main_color} rounded-full`}required />
                 </div>
               </div>
               <label htmlFor="email">Email</label>
-              <input type="email" id="email" placeholder="Votre email..." name="email" className="bg-none border-1 p-2 border-white text-white rounded-full" required />
+              <input type="email" id="email" placeholder="Votre email..." name="email" className={`"bg-none border-1 p-2 border-${theme.main_color} text-${theme.main_color} rounded-full`} required />
               <label htmlFor="message">Message</label>
-              <textarea id="message" name="message" placeholder="Ecrivez votre message ici..." className="bg-none border-1 p-4 border-white min-h-50 text-white rounded w-full" required />
-              <button type="submit" className="bg-orange-500 rounded-full p-3 w-3/4 mx-auto" disabled={formLocked}>Envoyer</button>
+              <textarea id="message" name="message" placeholder="Ecrivez votre message ici..." className={`bg-none border-1 p-4 border-${theme.main_color} min-h-50 text-${theme.main_color} rounded w-full`} required />
+              <button type="submit" className={`${theme.ctaColor} cursor-pointer rounded-full p-3 w-3/4 mx-auto text-white`} disabled={formLocked}>Envoyer</button>
             </form>
           } 
           {formLocked && !alreadySent &&

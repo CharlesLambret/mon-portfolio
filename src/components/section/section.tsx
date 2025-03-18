@@ -1,3 +1,4 @@
+import { Paragraph } from '@/api/strapiformats';
 import React from 'react';
 
 interface SectionProps {
@@ -48,8 +49,10 @@ const Section: React.FC<SectionProps> = ({ imageSrc, date, text, reverse = false
         
       {/* Troisième div (texte) */}
 
-      <div className="w-full md:w-1/3 flex justify-center items-center">
-        <p className="text-md text-justify">{text}</p>
+      <div className="w-full md:w-1/3 flex flex-col gap-3 justify-center items-start">
+        {text.split('\n').map((line, index) => (
+            <p key={index} className={`text-md ${line.includes('✅') ? '' : 'text-justify'}`}>{line}</p>
+        ))}
       </div>
     </section>
   );

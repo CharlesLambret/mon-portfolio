@@ -9,6 +9,7 @@ import styles from '@/styles/home.module.css'; // Importez le fichier CSS
 import ChargementComponent from "@/components/chargement/chargement";
 import Head from "next/head";
 import CustomHead from "@/components/head/head";
+import { useTheme } from "@/context/theme";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -24,6 +25,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const secondSectionRef = useRef(null);
   const pagesRef = useRef<(HTMLDivElement | null)[]>([]);
+  const { theme } = useTheme();
   useEffect(() => {
     const getContent = async () => {
       try {
@@ -145,7 +147,7 @@ export default function Home() {
                 pagesRef.current[index] = el;
               }}
               onClick={() => handleClick(page.link)}
-              className="py-5 flex flex-col w-full md:w-1/4 rounded border border-orange-400 hover:p-2 cursor-pointer hover:shadow-lg hover:bg-orange-500 hover:backdrop-blur-md hover:shadow-orange-300/30 justify-center items-center gap-3"
+              className={`py-5 flex flex-col w-full md:w-1/4 rounded border ${theme.borderCta} hover:p-2 cursor-pointer hover:shadow-lg hover:${theme.ctaColor} hover:backdrop-blur-md hover:${theme.ctaShadow} justify-center items-center gap-3`}
             >
               <img src={page.imgsrc} alt={page.name} className="w-1/2 my-5" />
               <p className="font-semibold">{page.name}</p>
