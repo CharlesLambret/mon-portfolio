@@ -1,7 +1,6 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import Sidebar from "@/components/sidebar/sidebar";
-import Footer from "@/components/footer/footer";
 import { ThemeProvider, useTheme } from '../context/theme';
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -20,8 +19,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 import { useRouter } from 'next/router';
 
-export default function App({ Component, pageProps, router }: AppProps) {
-  const nextRouter = useRouter();
+export default function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider>
       <MyApp Component={Component} pageProps={pageProps} />

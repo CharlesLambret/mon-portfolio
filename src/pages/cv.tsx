@@ -1,12 +1,8 @@
-// filepath: c:\Users\charl\Documents\Dev\siteperso\portfolio\src\pages\CV.tsx
-import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
+
 import { useRouter } from "next/router";
-import { JSX, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchCV } from "@/api/cv";
-import GithubIcon from "@/components/svg/github";
-import LinkedinIcon from "@/components/svg/linkedin";
-import { EnvelopeIcon, CheckIcon, XCircleIcon } from "@heroicons/react/24/outline";
+
 import Footer from "@/components/footer/footer";
 import ChargementComponent from "@/components/chargement/chargement";
 import CustomHead from "@/components/head/head";
@@ -15,16 +11,6 @@ import ExperienceItem from "@/components/cv/experience";
 import FormationComponent from "@/components/cv/formation";
 import SideContentComponent from "@/components/cv/sidecontent";
 import Separator from "@/components/cv/separator";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export default function CV() {
   const [content, setContent] = useState<any>(null);

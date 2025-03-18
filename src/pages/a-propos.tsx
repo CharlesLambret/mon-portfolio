@@ -1,20 +1,9 @@
-import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
-import { useRouter } from "next/router";
-import { JSX, useEffect, useState } from "react";
+
+
+import { useEffect, useState } from "react";
 import { fetchAPropos } from "@/api/apropos";
 import Footer from "@/components/footer/footer";
 import Section from "@/components/section/section";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export default function APropos() {
   const [content, setContent] = useState<any>(null);
@@ -34,11 +23,7 @@ export default function APropos() {
     getContent();
   }, []);
 
-  const router = useRouter();
 
-  const handleClick = (link: string): void => {
-    router.push(link);
-  };
 
   if (loading) {
     return <div>Loading...</div>;

@@ -1,24 +1,12 @@
-import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
+
 import { useRouter } from "next/router";
-import { JSX, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { fetchPortfolio, fetchProjets } from "@/api/projets";
 import { ArrowDownIcon, MagnifyingGlassIcon } from "@heroicons/react/16/solid";
 import Footer from "@/components/footer/footer";
 import ChargementComponent from "@/components/chargement/chargement";
-import NotFoundIcon from "@/components/svg/notfound";
 import NoProjectFoundComponent from "@/components/noprojectfound/noprojectfound";
 import CustomHead from "@/components/head/head";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export default function Home() {
   const [content, setContent] = useState<any>(null);

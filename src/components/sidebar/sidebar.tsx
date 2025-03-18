@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+
 import Logo from '../logo/logo';
 import { HomeIcon, FolderIcon, InformationCircleIcon, EnvelopeIcon, DocumentTextIcon, XMarkIcon, Bars3Icon } from '@heroicons/react/24/outline';
-import LogoBleu from '../logo/logoblue';
-import { fetchCV } from '@/api/cv';
 import CircleButton from './themeButton';
 import { useTheme } from '../../context/theme';
 

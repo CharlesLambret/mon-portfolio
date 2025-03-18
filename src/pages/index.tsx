@@ -1,5 +1,4 @@
-import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
+
 import { useRouter } from "next/router";
 import { JSX, useEffect, useState, useRef } from "react";
 import { fetchAccueil } from "@/api/accueil";
@@ -7,19 +6,9 @@ import { fetchSEO } from "@/api/seo";
 import Footer from "@/components/footer/footer";
 import styles from '@/styles/home.module.css'; // Importez le fichier CSS
 import ChargementComponent from "@/components/chargement/chargement";
-import Head from "next/head";
+
 import CustomHead from "@/components/head/head";
 import { useTheme } from "@/context/theme";
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export default function Home() {
   const [content, setContent] = useState<any>(null);
   const [loading, setLoading] = useState(true);
