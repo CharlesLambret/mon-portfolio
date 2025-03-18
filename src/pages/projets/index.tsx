@@ -86,19 +86,19 @@ export default function Home() {
           </div>
           <img src="./illuportfolio.png" className="w-full md:w-1/2" />
         </section>
-        <ArrowDownIcon className="w-8 fill-white" />
+        <ArrowDownIcon className={`w-8 fill-${theme.main_color}`}/>
         <section className="flex flex-col w-full mt-5">
           <div className="flex flex-row mb-5 py-5 gap-2 w-full justify-start items-center">
             <MagnifyingGlassIcon className="w-8 md:w-10" />
             <input
               type="text"
               placeholder="Rechercher une technologie..."
-              className="p-2 border border-white rounded-full w-5/6 md:w-1/3 focus:border-orange-500 hover:border-orange-400"
+              className={`p-2 border border-${theme.main_color} rounded-full w-5/6 md:w-1/3 focus:${theme.borderCta} hover:${theme.borderCta}`}
               value={searchTerm}
               onChange={handleSearch}
             />
           </div>
-          <div className="flex flex-col md:flex-row justify-center px-5 w-full gap-5 my-5">
+          <div className="flex flex-col md:flex-row justify-evenly md:px-5 w-full gap-5 my-5">
             {projets.length === 0 ? (
               <NoProjectFoundComponent />
             ) : (
@@ -119,7 +119,7 @@ export default function Home() {
                     ))}
                   </div>
                   <button
-                    className="mt-3 p-2 border-2 border-white cursor-pointer text-white rounded hover:bg-orange-500 hover:border-orange-500 hover:shadow-md hover:shadow-orange-400/30"
+                    className={`mt-3 p-2 border-2 border-${theme.main_color} cursor-pointer text-${theme.main_color} rounded hover:${theme.ctaColor} hover:${theme.borderCta} hover:shadow-md hover:${theme.ctaShadow}`}
                     onClick={() => handleClick(projet.documentId)}
                   >
                     Voir le projet
