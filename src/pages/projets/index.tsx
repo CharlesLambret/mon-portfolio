@@ -7,6 +7,13 @@ import Footer from "@/components/footer/footer";
 import ChargementComponent from "@/components/chargement/chargement";
 import NoProjectFoundComponent from "@/components/noprojectfound/noprojectfound";
 import CustomHead from "@/components/head/head";
+import { useTheme } from "@/context/theme";
+function truncateText(text: string, maxLength: number): string {
+  if (text.length > maxLength) {
+    return text.substring(0, maxLength) + '...';
+  }
+  return text;
+}
 
 export default function Home() {
   const [content, setContent] = useState<any>(null);
@@ -14,7 +21,7 @@ export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
   const [projets, setProjets] = useState<any[]>([]);
   const [originalProjets, setOriginalProjets] = useState<any[]>([]);
-
+  const {theme} = useTheme();
   interface Technology {
     Nom: string;
     Icone: string;
@@ -96,14 +103,14 @@ export default function Home() {
               <NoProjectFoundComponent />
             ) : (
               projets.map((projet) => (
-                <div key={projet.id} className="p-5 flex flex-col w-full md:w-1/4 rounded hover:shadow-lg hover:shadow-white-100/30 justify-center items-center gap-3 bg-linear-to-b from-blue-900 to-indigo-950">
+                <div key={projet.id} className={`p-5 flex flex-col w-full md:w-1/3 rounded shadow-lg ${theme.ctaShadow} justify-center items-center gap-3 ${theme.bg_dark} ${theme.bg_dark}`}>
                   <img
                     src={`${process.env.NEXT_PUBLIC_BASE_UPLOADS_URL}${projet.premier_screen}`}
                     alt={projet.Nom}
                     className="w-full p-1"
                   />
                   <h2 className="text-2xl font-bold mb-2">{projet.Nom}</h2>
-                  <p className="text-lg">{projet.description}</p>
+                  <p className="text-lg">{truncateText(projet.description, 90)}</p>
                   <div className="flex flex-row-wrap gap-2 items-center justify-center">
                     {projet.technologies.map((tech: Technology, index: number) => (
                       <p className="text-sm" key={index}>

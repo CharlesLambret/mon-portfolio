@@ -2,7 +2,6 @@
 import { useRouter } from "next/router";
 import { JSX, useEffect, useState, useRef } from "react";
 import { fetchAccueil } from "@/api/accueil";
-import { fetchSEO } from "@/api/seo";
 import Footer from "@/components/footer/footer";
 import styles from '@/styles/home.module.css'; // Importez le fichier CSS
 import ChargementComponent from "@/components/chargement/chargement";
@@ -19,7 +18,6 @@ export default function Home() {
     const getContent = async () => {
       try {
         const data = await fetchAccueil();
-        const seoData = await fetchSEO();
         setContent(data);
         
       } catch (error) {
