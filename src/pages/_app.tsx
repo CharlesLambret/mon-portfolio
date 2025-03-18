@@ -1,9 +1,9 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import Sidebar from "@/components/sidebar/sidebar";
-import { ThemeProvider, useTheme } from '../context/theme';
+import { ThemeProvider, useTheme } from "../context/theme";
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps, router }: AppProps) {
   const { theme } = useTheme();
 
   return (
@@ -11,17 +11,16 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Sidebar />
       <div className={`flex-1 w-full md:w-5/6 px-5 flex flex-col text-${theme.main_color}`}>
         <div className="md:hidden my-5 py-5"></div>
-        <Component {...pageProps} />
+        <Component {...pageProps} router={router} />
       </div>
     </div>
   );
 }
 
-
-export default function App({ Component, pageProps }: AppProps) {
+export default function App(appProps: AppProps) {
   return (
     <ThemeProvider>
-      <MyApp Component={Component} pageProps={pageProps} />
+      <MyApp {...appProps} />
     </ThemeProvider>
   );
 }
