@@ -119,7 +119,7 @@ export default function Home() {
                     ))}
                   </div>
                   <button
-                    className={`mt-3 p-2 border-2 border-${theme.main_color} cursor-pointer text-${theme.main_color} rounded hover:${theme.ctaColor} hover:${theme.borderCta} hover:shadow-md hover:${theme.ctaShadow}`}
+                    className={`mt-3 w-3/4 md:1/3 p-2 border-2 border-${theme.main_color} cursor-pointer text-${theme.main_color} rounded hover:${theme.ctaColor} hover:${theme.borderCta} hover:shadow-md hover:${theme.ctaShadow}`}
                     onClick={() => handleClick(projet.documentId)}
                   >
                     Voir le projet
