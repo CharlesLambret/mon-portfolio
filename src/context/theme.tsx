@@ -8,7 +8,7 @@ interface theme {
 
 const theme: { [mode in Mode]: theme } = {
   light: {
-    main_color: 'black-900',
+    main_color: 'black',
     bg_dark: 'bg-stone-100',
     bg : 'bg-stone-50',
     secondary_text: 'black',

@@ -59,10 +59,14 @@ export default function ProjetPage() {
               />
                 
                 <div className="flex flex-col w-full min-h-full p-5 justify-center items-center">
-                    <h1 className="text-4xl font-bold">{projet.Nom}</h1>
+                    <h1 className="text-4xl font-bold text-center mx-auto">{projet.Nom}</h1>
                     <img className="md:hidden w-full my-5" src={`${process.env.NEXT_PUBLIC_BASE_UPLOADS_URL}${projet.premier_screen}`} alt="mockup"/>
                     <div className="flex flex-col md:flex-row justify-evenly items-center py-5 w-full md:w-1/2 mx-auto">
-                        <a href={projet.url_prod} target="_blank" rel="noreferrer" className="text-white my-2 py-2 px-4 gap-2 flex flex-row justify-center items-center rounded-full bg-linear-to-b from-orange-300 to-orange-400  "> <GlobeAltIcon className="w-10"/> Voir le projet en ligne</a>
+                        {projet.url_prod?.startsWith("https://") && (
+                            <a href={projet.url_prod} target="_blank" rel="noreferrer" className="text-white my-2 py-2 px-4 gap-2 flex flex-row justify-center items-center rounded-full bg-linear-to-b from-orange-300 to-orange-400">
+                                <GlobeAltIcon className="w-10" /> Voir le projet en ligne
+                            </a>
+                        )}
                         <a href={projet.url_github} target="_blank" rel="noreferrer" className="text-white my-2 py-2 px-4 gap-2 flex flex-row justify-center items-center rounded-full bg-linear-to-b from-purple-500 to-purple-600"><GithubIcon className="w-10"/>Accéder au Github</a>
                     </div>
                     <div className="flex hidden md:block flex-row justify-evenly items-center py-5 mx-auto">

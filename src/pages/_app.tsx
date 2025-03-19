@@ -22,8 +22,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
   return (
     <div className={`flex flex-col md:flex-row ${theme.bg} ${nunito.variable} ${ptSans.variable} font-sans`}>
       <Sidebar />
-      <div className={`flex-1 w-full md:w-5/6 px-5 flex flex-col text-${theme.main_color}`}>
-        <div className="md:hidden my-5 py-5"></div>
+      <div className={`flex-1 w-full md:w-5/6 px-5 flex flex-col ${theme.main_color === 'black' ? 'text-black' : `text-${theme.main_color}`}`}>        <div className="md:hidden my-5 py-5"></div>
         <Component {...pageProps} router={router} />
       </div>
     </div>

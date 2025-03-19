@@ -84,7 +84,7 @@ export default function CV() {
           </div>
           <img src="./illucontactfull.png" className="w-full md:w-1/2 p-2" />
         </section>
-        <a href={content.downloadurl} className={`text-medium p-3 rounded ${theme.ctaColor} cursor-pointer w-3/4 md:w-1/3 text-center m-5 font-bold`} download>
+        <a href={content.downloadurl} className={`text-medium p-3 rounded text-white ${theme.ctaColor} shadow shadow-lg  ${theme.ctaShadow} cursor-pointer w-3/4 md:w-1/3 text-center m-5 font-bold`} download>
           Télécharger mon CV
         </a>
         <section
