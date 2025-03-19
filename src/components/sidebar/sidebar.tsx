@@ -62,7 +62,7 @@ const Sidebar: React.FC = () => {
           <ul className="space-y-2 my-5">
             {links.map((link) => (
               <li key={link.name} className="py-2">
-                <Link href={link.url} className={`w-1/2 gap-2 ${theme.secondary_text} hover:${theme.link_hover} hover:text-lg cursor-pointer hover:text-bold w-full flex flex-row text-start gap-1 justify-start items-center" download={link.download ? true : undefined`}>
+                <Link href={link.url} className={`w-1/2 gap-2 ${theme.secondary_text} hover:${theme.link_hover} hover:text-lg cursor-pointer hover:text-bold w-full gap-1 flex flex-row items-center `}>
                   <link.icon className='w-8' />
                   {link.name}
                 </Link>
@@ -84,10 +84,10 @@ const Sidebar: React.FC = () => {
             <img src="./logo.png" className='w-1/6' />
             <XMarkIcon className={`w-8 cursor-pointer text-${theme.main_color}`} onClick={closeMenu} />
           </div>
-          <ul className="space-y-2 mt-5">
+          <ul className="space-y-2 mt-5 mx-auto py-5">
             {links.map((link) => (
               <li key={link.name} className="py-2">
-                <Link href={link.url} className={`w-1/2 gap-2 ${theme.secondary_text} hover:text-white hover:text-lg cursor-pointer hover:text-bold w-full flex flex-row text-start gap-1 justify-start items-center" download={link.download ? true : undefined}`}>
+                <Link href={link.url} className={`w-1/2 gap-2 ${theme.secondary_text} hover:text-white hover:text-lg cursor-pointer hover:text-bold w-full flex flex-row items-center  gap-1 `}>
                   <link.icon className='w-8' />
                   {link.name}
                 </Link>
