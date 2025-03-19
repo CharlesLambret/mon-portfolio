@@ -109,7 +109,7 @@ export default function Home() {
           <h3 className="text-3xl md:text-2xl mb-5 md:mb-0 font-semibold text-center md:text-start">{content.titreParagraphe}</h3>
           <p className="text-xl font-medium text-justify">{content.paragraphe}</p>
         </div>
-        <img src="./illuaccueil.png" className={`w-full md:w-1/2 ${styles.floatAnimation}`} alt="Illustration d'accueil" />
+        <img src="./illuaccueil.png" className={`w-full md:w-1/2 z-10 ${styles.floatAnimation}`} alt="Illustration d'accueil" />
       </section>
       <div className="my-5 py-1 h-30 hidden md:block"></div>
       <section ref={secondSectionRef} className="flex flex-col w-full justify-center items-center gap-5 md:my-5 py-5">
