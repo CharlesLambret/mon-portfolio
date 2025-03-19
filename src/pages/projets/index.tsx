@@ -103,15 +103,15 @@ export default function Home() {
               <NoProjectFoundComponent />
             ) : (
               projets.map((projet) => (
-                <div key={projet.id} className={`p-5 flex flex-col w-full md:w-1/3 rounded shadow-lg ${theme.ctaShadow} justify-center items-center gap-3 ${theme.bg_dark} ${theme.bg_dark}`}>
+                <div key={projet.id} className={`p-5 flex flex-col w-full md:w-1/4 rounded shadow-lg ${theme.ctaShadow} justify-center items-center md:items-start gap-3 ${theme.bg_dark} ${theme.bg_dark}`}>
                   <img
                     src={`${process.env.NEXT_PUBLIC_BASE_UPLOADS_URL}${projet.premier_screen}`}
                     alt={projet.Nom}
-                    className="w-full p-1"
+                    className="w-full h-1/3 rounded-lg"
                   />
-                  <h2 className="text-2xl font-bold mb-2">{projet.Nom}</h2>
-                  <p className="text-lg">{truncateText(projet.description, 90)}</p>
-                  <div className="flex flex-row-wrap gap-2 items-center justify-center">
+                  <h2 className="text-xl font-bold mb-2">{projet.Nom}</h2>
+                  <p className="text-md text-center md:text-start ">{truncateText(projet.description, 90)}</p>
+                  <div className="flex flex-row-wrap gap-2 items-start justify-start">
                     {projet.technologies.map((tech: Technology, index: number) => (
                       <p className="text-sm" key={index}>
                         {tech.Nom}{index < projet.technologies.length - 1 ? ',' : ''}
