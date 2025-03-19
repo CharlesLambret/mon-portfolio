@@ -6,16 +6,15 @@ import {  useTheme} from '../../context/theme';
 export default function ChargementComponent() {
     const [showBlanc, setShowBlanc] = useState(true);
   const { theme } = useTheme();
-
     useEffect(() => {
         const interval = setInterval(() => {
             setShowBlanc(prev => !prev);
-        }, 5);
+        }, 4000);
         return () => clearInterval(interval);
     }, []);
 
     return (
-        <div className="w-full h-full flex flex-col justify-center items-center">
+        <div className="my-5 md:my-0 w-full h-full flex flex-col justify-center items-center">
             {showBlanc ? (
                 <LogoBlanc className="w-20 h-20 animate-pulse" />
             ) : (
