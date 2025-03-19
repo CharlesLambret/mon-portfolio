@@ -67,7 +67,10 @@ export default function ProjetPage() {
                                 <GlobeAltIcon className="w-10" /> Voir le projet en ligne
                             </a>
                         )}
-                        <a href={projet.url_github} target="_blank" rel="noreferrer" className="text-white my-2 py-2 px-4 gap-2 flex flex-row justify-center items-center rounded-full bg-linear-to-b from-purple-500 to-purple-600"><GithubIcon className="w-10"/>Accéder au Github</a>
+                        {projet.url_github?.startsWith("https://") && (
+                             <a href={projet.url_github} target="_blank" rel="noreferrer" className="text-white my-2 py-2 px-4 gap-2 flex flex-row justify-center items-center rounded-full bg-linear-to-b from-purple-500 to-purple-600"><GithubIcon className="w-10"/>Accéder au Github</a>
+
+                        )}
                     </div>
                     <div className="flex hidden md:block flex-row justify-evenly items-center py-5 mx-auto">
                         <VecteurSolo className="w-20"/>
