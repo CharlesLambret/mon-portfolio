@@ -82,7 +82,7 @@ const Sidebar: React.FC = () => {
         <div className={`md:hidden flex z-90 w-full flex-col justify-between items-start shadow-lg ${theme.bg_dark} ${theme.sidebarShadow} p-10 fixed top-0 `}>
           <div className='justify-between flex flex-row w-full'>
             <img src="./logo.png" className='w-1/6' />
-            <XMarkIcon className={`w-8 cursor-pointer text-white`} onClick={closeMenu} />
+            <XMarkIcon className={`w-8 cursor-pointer text-${theme.main_color}`} onClick={closeMenu} />
           </div>
           <ul className="space-y-2 mt-5">
             {links.map((link) => (
