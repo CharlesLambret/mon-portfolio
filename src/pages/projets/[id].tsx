@@ -122,7 +122,7 @@ export default function ProjetPage() {
                             <p className="text-lg font-medium text-justify w-full">{projet.details_projet}</p>
                         </div>
                     </div>
-                    <div className="w-full md:w-4/5 my-5 py-5">
+                    <div className="hidden md:block w-full md:w-4/5 my-5 py-5">
                         <h2 className="text-2xl font-bold text-center md:text-start">Exemple de code</h2>
                         <pre className="bg-gray-800 text-white p-4 rounded" style={{ whiteSpace: 'pre-wrap' }}>
                             <code className="language-javascript">{formatCode(projet.exemple_code)}</code>
