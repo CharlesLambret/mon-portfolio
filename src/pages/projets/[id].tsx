@@ -59,8 +59,13 @@ export default function ProjetPage() {
               />
                 
                 <div className="flex flex-col w-full min-h-full p-5 justify-center items-center">
-                    <h1 className="text-4xl font-bold text-center mx-auto">{projet.Nom}</h1>
-                    <img className="md:hidden w-full my-5" src={`${process.env.NEXT_PUBLIC_BASE_UPLOADS_URL}${projet.premier_screen}`} alt="mockup"/>
+                    {projet.premier_screen && (
+                        <img 
+                            className="md:hidden w-full my-5" 
+                            src={`${process.env.NEXT_PUBLIC_BASE_UPLOADS_URL}${projet.premier_screen}`} 
+                            alt="mockup"
+                        />
+                    )}
                     <div className="flex flex-col md:flex-row justify-evenly items-center py-5 w-full md:w-1/2 mx-auto">
                         {projet.url_prod?.startsWith("https://") && (
                             <a href={projet.url_prod} target="_blank" rel="noreferrer" className="text-white my-2 py-2 px-4 gap-2 flex flex-row justify-center items-center rounded-full bg-linear-to-b from-orange-300 to-orange-400">
@@ -94,10 +99,11 @@ export default function ProjetPage() {
                         </p>
                     </div>
                     <div className="flex flex-col-reverse md:flex-row justify-evenly items-center py-5 mx-auto w-full md:w-4/5 gap-5 my-5">
-                        <div className="flex flex-col gap-3 justify-center w-full md:w-1/2 items-center md:items-start py-5  md:py-0">
+                        <div className={`flex flex-col gap-3 justify-center w-full md:${projet.mockup_droite? 'w-1/2': 'w-full'} items-center md:items-start py-5  md:py-0`}>
                             <h2 className="text-2xl font-bold text-center md:text-start">Description du projet</h2>
                             <p className="text-lg font-medium w-full text-justify">{projet.description}</p>
                         </div>
+                        {projet.mockup_droite && (
                         <div className="w-full md:w-1/2 mx-2 border-purple-500 border-2 p-3 rounded">
                             <img 
                                 src={`${process.env.NEXT_PUBLIC_BASE_UPLOADS_URL}${projet.mockup_droite}`}
@@ -105,26 +111,36 @@ export default function ProjetPage() {
                                 className="w-full"
                             />
                         </div>
+                        )}
                     </div>
+                    {projet.deuxieme_screen && (
+                    <>
                     <div className="w-full md:w-4/5 my-5 py-5">
                         <div className="h-1 bg-gradient-to-r from-orange-500 via-purple-500 to-violet-500"></div>
                     </div>
+
                     <img 
                         src={`${process.env.NEXT_PUBLIC_BASE_UPLOADS_URL}${projet.deuxieme_screen}`}
                         className="w-full md:w-4/5"
                     />
+                    </>
+                    
+                    )}
                     <div className="w-full md:w-4/5 my-5 py-5">
                         <div className="h-1 bg-gradient-to-r from-orange-500 via-purple-500 to-violet-500"></div>
                     </div>
                     <div className="flex flex-col md:flex-row justify-between items-center py-5 mx-auto w-full md:w-4/5 gap-5 my-5">
                         <div className="w-full md:w-1/2 mx-2 border-purple-500 border-2 p-3 rounded">
+                        {projet.mockup_gauche && (
+
                             <img 
                                 src={`${process.env.NEXT_PUBLIC_BASE_UPLOADS_URL}${projet.mockup_gauche}`}
                                 alt="mockup gauche"
                                 className="w-full"
                             />
+                        )}
                         </div>
-                        <div className="flex flex-col gap-3 py-5 justify-center w-full md:w-1/2 items-start">
+                        <div className={`flex flex-col gap-3 py-5 justify-center w-full md:${projet.mockup_gauche? 'w-1/2': 'w-full'} items-start`}>
                             <h2 className="text-2xl font-bold  text-center w-full md:text-start">Détails du projet</h2>
                             <p className="text-lg font-medium text-justify w-full">{projet.details_projet}</p>
                         </div>
