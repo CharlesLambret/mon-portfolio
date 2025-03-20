@@ -12,7 +12,7 @@ export default function CircleButton() {
         <div className="absolute top-[-50px] flex space-x-2 transition-opacity duration-300 opacity-100">
           <button className="w-5 h-5 rounded-full bg-blue-500 cursor-pointer " onClick={() => setMode('blue')}></button>
           <button className="w-5 h-5 rounded-full bg-black cursor-pointer " onClick={() => setMode('dark')}></button>
-          {/* <button className="w-5 h-5 rounded-full bg-white border cursor-pointer " onClick={() => setMode('light')} ></button> */}
+          <button className="hidden md:block w-5 h-5 rounded-full bg-white border cursor-pointer " onClick={() => setMode('light')} ></button>
         </div>
       )}
       
