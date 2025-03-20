@@ -55,7 +55,7 @@ const Sidebar: React.FC = () => {
   ];
 
   return (
-    <div className="w-full md:w-1/6 lg:w-1/8">
+    <div className="w-full md:w-1/6 xl:w-1/8">
       <div className={`w-full border-r hidden md:flex flex-col justify-between shadow-lg ${theme.bg_dark} ${theme.sidebarShadow} items-start sticky top-0 h-screen p-7 `}>
         <div className="w-full flex flex-col gap-3">
           <Logo className='w-1/3 mx-auto cursor-pointer mb-2' />
