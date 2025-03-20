@@ -100,34 +100,42 @@ export default function Home() {
               />
             </div>
           </div>
-          <div className="flex flex-col md:flex-row justify-evenly md:px-5 w-full gap-5 my-5">
+          <div className="flex flex-col md:flex-row flex-wrap justify-evenly md:px-5 w-full gap-5 my-5">
             {projets.length === 0 ? (
               <NoProjectFoundComponent />
             ) : (
-              projets.map((projet) => (
-                <div key={projet.id} className={`p-5 flex flex-col w-full md:w-1/4 rounded shadow-lg ${theme.ctaShadow} justify-center items-center md:items-start gap-3 ${theme.bg_dark} ${theme.bg_dark}`}>
-                  <img
-                    src={`${process.env.NEXT_PUBLIC_BASE_UPLOADS_URL}${projet.premier_screen}`}
-                    alt={projet.Nom}
-                    className="w-full h-1/3 rounded-lg"
-                  />
-                  <h2 className="text-xl font-bold mb-2">{projet.Nom}</h2>
-                  <p className="text-md text-center md:text-start ">{truncateText(projet.description, 90)}</p>
-                  <div className="flex flex-row-wrap gap-2 items-start justify-start">
-                    {projet.technologies.map((tech: Technology, index: number) => (
-                      <p className="text-sm" key={index}>
-                        {tech.Nom}{index < projet.technologies.length - 1 ? ',' : ''}
-                      </p>
-                    ))}
-                  </div>
-                  <button
-                    className={`mt-3 w-3/4 md:1/3 md:mx-auto p-2 border-2 border-${theme.main_color} cursor-pointer text-${theme.main_color} rounded hover:${theme.ctaColor} hover:${theme.borderCta} hover:shadow-md hover:${theme.ctaShadow}`}
-                    onClick={() => handleClick(projet.documentId)}
+              projets
+                .sort((a, b) => b.periode - a.periode) // Sort projects by period in descending order
+                .map((projet) => (
+                  <div
+                    key={projet.id}
+                    className={`p-5 my-3 flex flex-col w-full md:w-1/4 rounded shadow-lg ${theme.ctaShadow} justify-center items-center md:items-start gap-3 ${theme.bg_dark} ${theme.bg_dark}`}
                   >
-                    Voir le projet
-                  </button>
-                </div>
-              ))
+                    <img
+                      src={`${process.env.NEXT_PUBLIC_BASE_UPLOADS_URL}${projet.premier_screen}`}
+                      alt={projet.Nom}
+                      className="w-full h-1/3 rounded-lg"
+                    />
+                    <h2 className="text-xl font-bold mb-2">{projet.Nom}</h2>
+                    <p className="text-md text-center md:text-start ">
+                      {truncateText(projet.description, 90)}
+                    </p>
+                    <div className="flex flex-row-wrap gap-2 items-start justify-start">
+                      {projet.technologies.map((tech: Technology, index: number) => (
+                        <p className="text-sm" key={index}>
+                          {tech.Nom}
+                          {index < projet.technologies.length - 1 ? ',' : ''}
+                        </p>
+                      ))}
+                    </div>
+                    <button
+                      className={`mt-3 w-3/4 md:1/3 md:mx-auto p-2 border-2 border-${theme.main_color} cursor-pointer text-${theme.main_color} rounded hover:${theme.ctaColor} hover:${theme.borderCta} hover:shadow-md hover:${theme.ctaShadow}`}
+                      onClick={() => handleClick(projet.documentId)}
+                    >
+                      Voir le projet
+                    </button>
+                  </div>
+                ))
             )}
           </div>
         </section>
